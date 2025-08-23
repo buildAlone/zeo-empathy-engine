@@ -1,34 +1,101 @@
 import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial, OrbitControls } from '@react-three/drei';
+import { Sphere, Cylinder, Box, OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
+import * as THREE from 'three';
 
-// 3D Avatar Component
-function AvatarMesh({ isActive = false }: { isActive?: boolean }) {
-  const meshRef = useRef<any>();
+// 3D Woman Avatar Component
+function WomanAvatarMesh({ isActive = false }: { isActive?: boolean }) {
+  const groupRef = useRef<THREE.Group>();
+  const headRef = useRef<THREE.Mesh>();
+  const bodyRef = useRef<THREE.Mesh>();
 
   useFrame((state) => {
-    if (meshRef.current) {
-      // Gentle rotation
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
-      // Breathing effect
-      meshRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 0.8) * 0.02);
+    if (groupRef.current) {
+      // Gentle rotation of the whole figure
+      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+      
+      // Subtle breathing animation
+      if (bodyRef.current) {
+        bodyRef.current.scale.y = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.02;
+      }
+      
+      // Subtle head movement
+      if (headRef.current) {
+        headRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.4) * 0.05;
+        headRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.6) * 0.03;
+      }
     }
   });
 
+  const skinColor = "#FDBCB4";
+  const hairColor = "#8B4513";
+  const clothColor = isActive ? "#60EFFF" : "#A855F7";
+
   return (
-    <Sphere ref={meshRef} args={[1, 64, 64]} position={[0, 0, 0]}>
-      <MeshDistortMaterial
-        color={isActive ? "#60EFFF" : "#A855F7"}
-        attach="material"
-        distort={0.4}
-        speed={2}
-        roughness={0.2}
-        metalness={0.8}
-        transparent
-        opacity={0.8}
-      />
-    </Sphere>
+    <group ref={groupRef} position={[0, -0.5, 0]}>
+      {/* Head */}
+      <Sphere ref={headRef} args={[0.35, 32, 32]} position={[0, 1.2, 0]}>
+        <meshPhongMaterial 
+          color={skinColor}
+          shininess={30}
+          transparent
+          opacity={0.95}
+        />
+      </Sphere>
+      
+      {/* Hair */}
+      <Sphere args={[0.38, 32, 32]} position={[0, 1.35, -0.05]}>
+        <meshPhongMaterial 
+          color={hairColor}
+          shininess={100}
+        />
+      </Sphere>
+      
+      {/* Neck */}
+      <Cylinder args={[0.12, 0.12, 0.25]} position={[0, 0.9, 0]}>
+        <meshPhongMaterial color={skinColor} shininess={30} />
+      </Cylinder>
+      
+      {/* Body/Torso */}
+      <Box ref={bodyRef} args={[0.5, 0.8, 0.3]} position={[0, 0.3, 0]}>
+        <meshPhongMaterial 
+          color={clothColor}
+          shininess={50}
+          transparent
+          opacity={0.9}
+        />
+      </Box>
+      
+      {/* Arms */}
+      <Cylinder args={[0.08, 0.08, 0.6]} position={[-0.35, 0.4, 0]} rotation={[0, 0, 0.3]}>
+        <meshPhongMaterial color={skinColor} shininess={30} />
+      </Cylinder>
+      <Cylinder args={[0.08, 0.08, 0.6]} position={[0.35, 0.4, 0]} rotation={[0, 0, -0.3]}>
+        <meshPhongMaterial color={skinColor} shininess={30} />
+      </Cylinder>
+      
+      {/* Hands */}
+      <Sphere args={[0.1, 16, 16]} position={[-0.55, 0.1, 0]}>
+        <meshPhongMaterial color={skinColor} shininess={30} />
+      </Sphere>
+      <Sphere args={[0.1, 16, 16]} position={[0.55, 0.1, 0]}>
+        <meshPhongMaterial color={skinColor} shininess={30} />
+      </Sphere>
+      
+      {/* Eyes */}
+      <Sphere args={[0.04, 16, 16]} position={[-0.1, 1.25, 0.32]}>
+        <meshPhongMaterial color="#000000" />
+      </Sphere>
+      <Sphere args={[0.04, 16, 16]} position={[0.1, 1.25, 0.32]}>
+        <meshPhongMaterial color="#000000" />
+      </Sphere>
+      
+      {/* Lips */}
+      <Sphere args={[0.06, 16, 8]} position={[0, 1.15, 0.33]} scale={[1, 0.3, 0.5]}>
+        <meshPhongMaterial color="#FF69B4" shininess={100} />
+      </Sphere>
+    </group>
   );
 }
 
@@ -68,7 +135,7 @@ export default function Avatar3D({ size = 'md', isActive = false, className = ''
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#A855F7" />
-        <AvatarMesh isActive={isActive || isHovered} />
+        <WomanAvatarMesh isActive={isActive || isHovered} />
         <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
 
