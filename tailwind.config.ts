@@ -61,12 +61,43 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// ZEO Custom Colors
+				zeo: {
+					primary: 'hsl(var(--zeo-primary))',
+					'primary-glow': 'hsl(var(--zeo-primary-glow))',
+					secondary: 'hsl(var(--zeo-secondary))',
+					'secondary-glow': 'hsl(var(--zeo-secondary-glow))',
+					neutral: 'hsl(var(--zeo-neutral))',
+					surface: 'hsl(var(--zeo-surface))',
+					glass: 'hsl(var(--zeo-glass))'
+				},
+				emotion: {
+					calm: 'hsl(var(--emotion-calm))',
+					happy: 'hsl(var(--emotion-happy))',
+					anxious: 'hsl(var(--emotion-anxious))',
+					sad: 'hsl(var(--emotion-sad))',
+					excited: 'hsl(var(--emotion-excited))'
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-glow': 'var(--gradient-glow)'
+			},
+			boxShadow: {
+				'glow': 'var(--shadow-glow)',
+				'card': 'var(--shadow-card)',
+				'avatar': 'var(--shadow-avatar)'
+			},
+			transitionTimingFunction: {
+				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 			},
 			keyframes: {
 				'accordion-down': {

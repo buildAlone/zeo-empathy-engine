@@ -8,89 +8,129 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* ZEO Design System - Modern AI Companion Theme */
+    --background: 220 27% 8%;
+    --foreground: 220 9% 97%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 27% 12%;
+    --card-foreground: 220 9% 97%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 27% 12%;
+    --popover-foreground: 220 9% 97%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 194 93% 68%;
+    --primary-foreground: 220 27% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 21% 18%;
+    --secondary-foreground: 220 9% 97%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 27% 15%;
+    --muted-foreground: 220 9% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 279 89% 72%;
+    --accent-foreground: 220 27% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 9% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 27% 18%;
+    --input: 220 27% 18%;
+    --ring: 194 93% 68%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* ZEO Custom Design Tokens */
+    --zeo-primary: 194 93% 68%;        /* Bright cyan */
+    --zeo-primary-glow: 194 93% 78%;   /* Lighter cyan for glow */
+    --zeo-secondary: 279 89% 72%;      /* Purple accent */
+    --zeo-secondary-glow: 279 89% 82%; /* Lighter purple */
+    --zeo-neutral: 220 27% 12%;        /* Dark card background */
+    --zeo-surface: 220 27% 8%;         /* Main background */
+    --zeo-glass: 220 27% 18%;          /* Glass morphism base */
+    
+    /* Emotion Colors */
+    --emotion-calm: 194 93% 68%;       /* Blue - calm */
+    --emotion-happy: 142 76% 59%;      /* Green - happy */
+    --emotion-anxious: 45 93% 67%;     /* Amber - anxious */
+    --emotion-sad: 231 68% 66%;        /* Soft blue - sad */
+    --emotion-excited: 279 89% 72%;    /* Purple - excited */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--zeo-primary)) 0%, hsl(var(--zeo-secondary)) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--zeo-glass) / 0.1) 0%, hsl(var(--zeo-glass) / 0.05) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(var(--zeo-primary) / 0.3) 0%, transparent 70%);
+    
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 40px hsl(var(--zeo-primary) / 0.3);
+    --shadow-card: 0 8px 32px hsl(var(--zeo-surface) / 0.8);
+    --shadow-avatar: 0 0 60px hsl(var(--zeo-primary) / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 27% 12%;
+    --sidebar-foreground: 220 9% 97%;
+    --sidebar-primary: 194 93% 68%;
+    --sidebar-primary-foreground: 220 27% 8%;
+    --sidebar-accent: 220 27% 18%;
+    --sidebar-accent-foreground: 220 9% 97%;
+    --sidebar-border: 220 27% 18%;
+    --sidebar-ring: 194 93% 68%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  .light {
+    --background: 220 14% 96%;
+    --foreground: 220 27% 8%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 27% 8%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 27% 8%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 194 93% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 220 27% 8%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 14% 90%;
+    --muted-foreground: 220 9% 45%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 279 89% 62%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 220 14% 85%;
+    --input: 220 14% 85%;
+    --ring: 194 93% 58%;
+
+    /* ZEO Light Mode Tokens */
+    --zeo-primary: 194 93% 58%;
+    --zeo-primary-glow: 194 93% 68%;
+    --zeo-secondary: 279 89% 62%;
+    --zeo-secondary-glow: 279 89% 72%;
+    --zeo-neutral: 0 0% 100%;
+    --zeo-surface: 220 14% 96%;
+    --zeo-glass: 0 0% 100%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(var(--zeo-primary)) 0%, hsl(var(--zeo-secondary)) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--zeo-glass) / 0.8) 0%, hsl(var(--zeo-glass) / 0.4) 100%);
+    --shadow-glow: 0 0 40px hsl(var(--zeo-primary) / 0.2);
+    --shadow-card: 0 8px 32px hsl(220 27% 8% / 0.1);
+    --shadow-avatar: 0 0 60px hsl(var(--zeo-primary) / 0.3);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 27% 8%;
+    --sidebar-primary: 194 93% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 14% 90%;
+    --sidebar-accent-foreground: 220 27% 8%;
+    --sidebar-border: 220 14% 85%;
+    --sidebar-ring: 194 93% 58%;
   }
 }
 
@@ -100,6 +140,83 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    background: hsl(var(--background));
+    background-image: 
+      radial-gradient(ellipse at 20% 80%, hsl(var(--zeo-primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(var(--zeo-secondary) / 0.1) 0%, transparent 50%);
+  }
+
+  /* Glass morphism utility classes */
+  .glass {
+    background: hsl(var(--zeo-glass) / 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  .glass-strong {
+    background: hsl(var(--zeo-glass) / 0.2);
+    backdrop-filter: blur(40px);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-soft {
+    box-shadow: 0 0 20px hsl(var(--zeo-primary) / 0.2);
+  }
+
+  /* Avatar breathing animation */
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--zeo-surface));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--zeo-primary) / 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--zeo-primary) / 0.5);
   }
 }

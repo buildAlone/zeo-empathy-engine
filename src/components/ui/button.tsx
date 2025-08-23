@@ -18,6 +18,11 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // ZEO Custom Variants
+        hero: "bg-gradient-hero text-white shadow-glow hover:scale-105 hover:shadow-avatar transition-all duration-300 border border-zeo-primary/20",
+        glass: "glass text-foreground border-border/20 hover:glass-strong hover:border-border/40 transition-all duration-300",
+        crisis: "bg-destructive/90 text-destructive-foreground hover:bg-destructive shadow-lg border border-destructive/30 animate-pulse",
+        emotion: "bg-emotion-calm/20 text-emotion-calm border border-emotion-calm/30 hover:bg-emotion-calm/30 transition-colors duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
