@@ -1,44 +1,31 @@
 import { useRef, useState } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-import avatarGirl from '../assets/avatar-girl.jpg';
+import beautifulGirl from '../assets/beautiful-girl.jpg';
 
-// 3D Beautiful Girl Avatar Component
+// 3D Beautiful Girl Avatar Component - Static
 function BeautifulGirlMesh({ isActive = false }: { isActive?: boolean }) {
-  const meshRef = useRef<THREE.Mesh>();
-  const texture = useLoader(THREE.TextureLoader, avatarGirl);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Gentle floating animation
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
-      
-      // Subtle scale breathing effect
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.02;
-      meshRef.current.scale.setScalar(scale);
-    }
-  });
+  const texture = useLoader(THREE.TextureLoader, beautifulGirl);
 
   return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]}>
       <circleGeometry args={[1.2, 64]} />
       <meshPhongMaterial 
         map={texture}
         transparent
-        opacity={0.95}
+        opacity={0.98}
         side={THREE.DoubleSide}
       />
       
-      {/* Glowing rim effect */}
+      {/* Subtle glowing rim effect */}
       <mesh position={[0, 0, -0.01]}>
         <ringGeometry args={[1.15, 1.25, 64]} />
         <meshBasicMaterial 
           color={isActive ? "#60EFFF" : "#A855F7"}
           transparent
-          opacity={0.6}
+          opacity={0.4}
         />
       </mesh>
     </mesh>
@@ -82,7 +69,7 @@ export default function Avatar3D({ size = 'md', isActive = false, className = ''
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#A855F7" />
         <BeautifulGirlMesh isActive={isActive || isHovered} />
-        <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
       </Canvas>
 
       {/* Pulse rings */}
