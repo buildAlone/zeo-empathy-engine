@@ -1,101 +1,47 @@
 import { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Cylinder, Box, OrbitControls } from '@react-three/drei';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
+import avatarGirl from '../assets/avatar-girl.jpg';
 
-// 3D Woman Avatar Component
-function WomanAvatarMesh({ isActive = false }: { isActive?: boolean }) {
-  const groupRef = useRef<THREE.Group>();
-  const headRef = useRef<THREE.Mesh>();
-  const bodyRef = useRef<THREE.Mesh>();
+// 3D Beautiful Girl Avatar Component
+function BeautifulGirlMesh({ isActive = false }: { isActive?: boolean }) {
+  const meshRef = useRef<THREE.Mesh>();
+  const texture = useLoader(THREE.TextureLoader, avatarGirl);
 
   useFrame((state) => {
-    if (groupRef.current) {
-      // Gentle rotation of the whole figure
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+    if (meshRef.current) {
+      // Gentle floating animation
+      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
       
-      // Subtle breathing animation
-      if (bodyRef.current) {
-        bodyRef.current.scale.y = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.02;
-      }
-      
-      // Subtle head movement
-      if (headRef.current) {
-        headRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.4) * 0.05;
-        headRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.6) * 0.03;
-      }
+      // Subtle scale breathing effect
+      const scale = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.02;
+      meshRef.current.scale.setScalar(scale);
     }
   });
 
-  const skinColor = "#FDBCB4";
-  const hairColor = "#8B4513";
-  const clothColor = isActive ? "#60EFFF" : "#A855F7";
-
   return (
-    <group ref={groupRef} position={[0, -0.5, 0]}>
-      {/* Head */}
-      <Sphere ref={headRef} args={[0.35, 32, 32]} position={[0, 1.2, 0]}>
-        <meshPhongMaterial 
-          color={skinColor}
-          shininess={30}
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <circleGeometry args={[1.2, 64]} />
+      <meshPhongMaterial 
+        map={texture}
+        transparent
+        opacity={0.95}
+        side={THREE.DoubleSide}
+      />
+      
+      {/* Glowing rim effect */}
+      <mesh position={[0, 0, -0.01]}>
+        <ringGeometry args={[1.15, 1.25, 64]} />
+        <meshBasicMaterial 
+          color={isActive ? "#60EFFF" : "#A855F7"}
           transparent
-          opacity={0.95}
+          opacity={0.6}
         />
-      </Sphere>
-      
-      {/* Hair */}
-      <Sphere args={[0.38, 32, 32]} position={[0, 1.35, -0.05]}>
-        <meshPhongMaterial 
-          color={hairColor}
-          shininess={100}
-        />
-      </Sphere>
-      
-      {/* Neck */}
-      <Cylinder args={[0.12, 0.12, 0.25]} position={[0, 0.9, 0]}>
-        <meshPhongMaterial color={skinColor} shininess={30} />
-      </Cylinder>
-      
-      {/* Body/Torso */}
-      <Box ref={bodyRef} args={[0.5, 0.8, 0.3]} position={[0, 0.3, 0]}>
-        <meshPhongMaterial 
-          color={clothColor}
-          shininess={50}
-          transparent
-          opacity={0.9}
-        />
-      </Box>
-      
-      {/* Arms */}
-      <Cylinder args={[0.08, 0.08, 0.6]} position={[-0.35, 0.4, 0]} rotation={[0, 0, 0.3]}>
-        <meshPhongMaterial color={skinColor} shininess={30} />
-      </Cylinder>
-      <Cylinder args={[0.08, 0.08, 0.6]} position={[0.35, 0.4, 0]} rotation={[0, 0, -0.3]}>
-        <meshPhongMaterial color={skinColor} shininess={30} />
-      </Cylinder>
-      
-      {/* Hands */}
-      <Sphere args={[0.1, 16, 16]} position={[-0.55, 0.1, 0]}>
-        <meshPhongMaterial color={skinColor} shininess={30} />
-      </Sphere>
-      <Sphere args={[0.1, 16, 16]} position={[0.55, 0.1, 0]}>
-        <meshPhongMaterial color={skinColor} shininess={30} />
-      </Sphere>
-      
-      {/* Eyes */}
-      <Sphere args={[0.04, 16, 16]} position={[-0.1, 1.25, 0.32]}>
-        <meshPhongMaterial color="#000000" />
-      </Sphere>
-      <Sphere args={[0.04, 16, 16]} position={[0.1, 1.25, 0.32]}>
-        <meshPhongMaterial color="#000000" />
-      </Sphere>
-      
-      {/* Lips */}
-      <Sphere args={[0.06, 16, 8]} position={[0, 1.15, 0.33]} scale={[1, 0.3, 0.5]}>
-        <meshPhongMaterial color="#FF69B4" shininess={100} />
-      </Sphere>
-    </group>
+      </mesh>
+    </mesh>
   );
 }
 
@@ -135,7 +81,7 @@ export default function Avatar3D({ size = 'md', isActive = false, className = ''
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#A855F7" />
-        <WomanAvatarMesh isActive={isActive || isHovered} />
+        <BeautifulGirlMesh isActive={isActive || isHovered} />
         <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
 
