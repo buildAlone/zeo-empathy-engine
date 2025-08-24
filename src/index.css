@@ -8,52 +8,52 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ZEO Design System - Modern AI Companion Theme */
-    --background: 220 27% 8%;
-    --foreground: 220 9% 97%;
+    /* ZEO Design System - Fresh Green Theme */
+    --background: 123 25% 86%;
+    --foreground: 120 25% 20%;
 
-    --card: 220 27% 12%;
-    --card-foreground: 220 9% 97%;
+    --card: 125 25% 90%;
+    --card-foreground: 120 25% 20%;
 
-    --popover: 220 27% 12%;
-    --popover-foreground: 220 9% 97%;
+    --popover: 125 25% 90%;
+    --popover-foreground: 120 25% 20%;
 
-    --primary: 194 93% 68%;
-    --primary-foreground: 220 27% 8%;
+    --primary: 120 25% 93%;
+    --primary-foreground: 120 25% 20%;
 
-    --secondary: 240 21% 18%;
-    --secondary-foreground: 220 9% 97%;
+    --secondary: 127 25% 90%;
+    --secondary-foreground: 120 25% 20%;
 
-    --muted: 220 27% 15%;
-    --muted-foreground: 220 9% 65%;
+    --muted: 120 43% 98%;
+    --muted-foreground: 120 25% 40%;
 
-    --accent: 279 89% 72%;
-    --accent-foreground: 220 27% 8%;
+    --accent: 123 25% 86%;
+    --accent-foreground: 120 25% 20%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 220 9% 97%;
+    --destructive-foreground: 120 43% 98%;
 
-    --border: 220 27% 18%;
-    --input: 220 27% 18%;
-    --ring: 194 93% 68%;
+    --border: 125 25% 85%;
+    --input: 125 25% 85%;
+    --ring: 120 25% 93%;
 
     --radius: 1rem;
 
     /* ZEO Custom Design Tokens */
-    --zeo-primary: 194 93% 68%;        /* Bright cyan */
-    --zeo-primary-glow: 194 93% 78%;   /* Lighter cyan for glow */
-    --zeo-secondary: 279 89% 72%;      /* Purple accent */
-    --zeo-secondary-glow: 279 89% 82%; /* Lighter purple */
-    --zeo-neutral: 220 27% 12%;        /* Dark card background */
-    --zeo-surface: 220 27% 8%;         /* Main background */
-    --zeo-glass: 220 27% 18%;          /* Glass morphism base */
+    --zeo-primary: 120 25% 93%;        /* Light green */
+    --zeo-primary-glow: 120 43% 98%;   /* Very light green for glow */
+    --zeo-secondary: 123 25% 86%;      /* Medium green */
+    --zeo-secondary-glow: 125 25% 90%; /* Lighter green */
+    --zeo-neutral: 125 25% 90%;        /* Card background */
+    --zeo-surface: 120 43% 98%;        /* Main background */
+    --zeo-glass: 127 25% 90%;          /* Glass morphism base */
     
     /* Emotion Colors */
-    --emotion-calm: 194 93% 68%;       /* Blue - calm */
-    --emotion-happy: 142 76% 59%;      /* Green - happy */
+    --emotion-calm: 120 25% 93%;       /* Light green - calm */
+    --emotion-happy: 123 25% 86%;      /* Medium green - happy */
     --emotion-anxious: 45 93% 67%;     /* Amber - anxious */
     --emotion-sad: 231 68% 66%;        /* Soft blue - sad */
-    --emotion-excited: 279 89% 72%;    /* Purple - excited */
+    --emotion-excited: 125 25% 90%;    /* Green - excited */
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--zeo-primary)) 0%, hsl(var(--zeo-secondary)) 100%);
@@ -69,53 +69,53 @@ All colors MUST be HSL.
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-background: 220 27% 12%;
-    --sidebar-foreground: 220 9% 97%;
-    --sidebar-primary: 194 93% 68%;
-    --sidebar-primary-foreground: 220 27% 8%;
-    --sidebar-accent: 220 27% 18%;
-    --sidebar-accent-foreground: 220 9% 97%;
-    --sidebar-border: 220 27% 18%;
-    --sidebar-ring: 194 93% 68%;
+    --sidebar-background: 125 25% 90%;
+    --sidebar-foreground: 120 25% 20%;
+    --sidebar-primary: 120 25% 93%;
+    --sidebar-primary-foreground: 120 25% 20%;
+    --sidebar-accent: 127 25% 90%;
+    --sidebar-accent-foreground: 120 25% 20%;
+    --sidebar-border: 125 25% 85%;
+    --sidebar-ring: 120 25% 93%;
   }
 
   .light {
-    --background: 220 14% 96%;
-    --foreground: 220 27% 8%;
+    --background: 120 43% 98%;
+    --foreground: 120 25% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 27% 8%;
+    --card: 120 25% 93%;
+    --card-foreground: 120 25% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 27% 8%;
+    --popover: 120 25% 93%;
+    --popover-foreground: 120 25% 20%;
 
-    --primary: 194 93% 58%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 123 25% 86%;
+    --primary-foreground: 120 25% 20%;
 
-    --secondary: 220 14% 90%;
-    --secondary-foreground: 220 27% 8%;
+    --secondary: 125 25% 90%;
+    --secondary-foreground: 120 25% 20%;
 
-    --muted: 220 14% 90%;
-    --muted-foreground: 220 9% 45%;
+    --muted: 127 25% 90%;
+    --muted-foreground: 120 25% 40%;
 
-    --accent: 279 89% 62%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 120 25% 93%;
+    --accent-foreground: 120 25% 20%;
 
     --destructive: 0 84% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 120 43% 98%;
 
-    --border: 220 14% 85%;
-    --input: 220 14% 85%;
-    --ring: 194 93% 58%;
+    --border: 125 25% 85%;
+    --input: 125 25% 85%;
+    --ring: 123 25% 86%;
 
     /* ZEO Light Mode Tokens */
-    --zeo-primary: 194 93% 58%;
-    --zeo-primary-glow: 194 93% 68%;
-    --zeo-secondary: 279 89% 62%;
-    --zeo-secondary-glow: 279 89% 72%;
-    --zeo-neutral: 0 0% 100%;
-    --zeo-surface: 220 14% 96%;
-    --zeo-glass: 0 0% 100%;
+    --zeo-primary: 123 25% 86%;
+    --zeo-primary-glow: 120 25% 93%;
+    --zeo-secondary: 125 25% 90%;
+    --zeo-secondary-glow: 127 25% 90%;
+    --zeo-neutral: 120 25% 93%;
+    --zeo-surface: 120 43% 98%;
+    --zeo-glass: 120 25% 93%;
 
     --gradient-hero: linear-gradient(135deg, hsl(var(--zeo-primary)) 0%, hsl(var(--zeo-secondary)) 100%);
     --gradient-card: linear-gradient(135deg, hsl(var(--zeo-glass) / 0.8) 0%, hsl(var(--zeo-glass) / 0.4) 100%);
@@ -123,14 +123,14 @@ All colors MUST be HSL.
     --shadow-card: 0 8px 32px hsl(220 27% 8% / 0.1);
     --shadow-avatar: 0 0 60px hsl(var(--zeo-primary) / 0.3);
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 27% 8%;
-    --sidebar-primary: 194 93% 58%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 90%;
-    --sidebar-accent-foreground: 220 27% 8%;
-    --sidebar-border: 220 14% 85%;
-    --sidebar-ring: 194 93% 58%;
+    --sidebar-background: 120 25% 93%;
+    --sidebar-foreground: 120 25% 20%;
+    --sidebar-primary: 123 25% 86%;
+    --sidebar-primary-foreground: 120 25% 20%;
+    --sidebar-accent: 125 25% 90%;
+    --sidebar-accent-foreground: 120 25% 20%;
+    --sidebar-border: 125 25% 85%;
+    --sidebar-ring: 123 25% 86%;
   }
 }
 
