@@ -140,11 +140,12 @@ export default function Session() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-zeo-surface via-background to-zeo-surface relative overflow-hidden">
       {/* Main Session Interface */}
-      <div className="grid lg:grid-cols-3 h-screen">
-        {/* Avatar Section */}
-        <div className="lg:col-span-2 flex items-center justify-center relative p-8">
+      <div className={`flex h-screen ${showChat ? 'pr-96' : ''} transition-all duration-300`}>
+        {/* Two Avatars Side by Side */}
+        <div className="flex-1 flex items-center justify-center relative p-8">
+          {/* AI Avatar (Left) */}
           <motion.div
-            className="relative"
+            className="relative mr-16"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -161,16 +162,16 @@ export default function Session() {
             
             <Avatar3D size="lg" isActive={true} />
 
-            {/* Emotion Indicator */}
+            {/* AI Label */}
             <motion.div
-              className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full glass-strong border ${EmotionIcon.bg} border-opacity-30`}
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full glass-strong border border-zeo-primary/20"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
               <div className="flex items-center space-x-2">
-                <EmotionIcon.icon className={`w-4 h-4 ${EmotionIcon.color}`} />
-                <span className="text-sm font-medium capitalize">{detectedEmotion}</span>
+                <Brain className="w-4 h-4 text-zeo-primary" />
+                <span className="text-sm font-medium">ZEO AI</span>
               </div>
             </motion.div>
 
@@ -192,13 +193,15 @@ export default function Session() {
               )}
             </AnimatePresence>
           </motion.div>
-        </div>
 
-        {/* User Video & Controls */}
-        <div className="lg:col-span-1 bg-zeo-neutral/10 backdrop-blur-sm border-l border-border/10 flex flex-col">
-          {/* User Video */}
-          <div className="flex-1 p-6">
-            <div className="relative rounded-xl overflow-hidden bg-zeo-glass h-64 lg:h-80">
+          {/* User Avatar (Right) */}
+          <motion.div
+            className="relative ml-16"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="relative w-64 h-64 rounded-full overflow-hidden bg-zeo-glass shadow-avatar border-4 border-zeo-primary/20">
               {isCameraOn ? (
                 <video 
                   ref={videoRef}
@@ -209,89 +212,105 @@ export default function Session() {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-muted">
-                  <VideoOff className="w-12 h-12 text-muted-foreground" />
+                  <VideoOff className="w-16 h-16 text-muted-foreground" />
                 </div>
               )}
               
               {/* Emotion Detection Overlay */}
               <div className="absolute top-4 left-4 flex items-center space-x-2">
-                <div className={`w-3 h-3 rounded-full ${EmotionIcon.bg.replace('/20', '')} animate-pulse`} />
-                <span className="text-sm font-medium text-white">Analyzing emotion...</span>
+                <EmotionIcon.icon className={`w-4 h-4 ${EmotionIcon.color}`} />
+                <span className="text-xs font-medium text-white capitalize">{detectedEmotion}</span>
               </div>
             </div>
-          </div>
 
-          {/* Controls */}
-          <div className="p-6 border-t border-border/10">
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <Button
-                variant={isMicOn ? "default" : "destructive"}
-                onClick={() => setIsMicOn(!isMicOn)}
-                className="flex items-center justify-center"
-              >
-                {isMicOn ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
-              </Button>
-              
-              <Button
-                variant={isCameraOn ? "default" : "destructive"}
-                onClick={() => setIsCameraOn(!isCameraOn)}
-                className="flex items-center justify-center"
-              >
-                {isCameraOn ? <Video className="w-4 h-4" /> : <VideoOff className="w-4 h-4" />}
-              </Button>
-            </div>
-
-            <div className="space-y-3">
-              <Button
-                variant="glass"
-                className="w-full justify-start"
-                onClick={() => setShowChat(!showChat)}
-              >
-                <MessageSquare className="w-4 h-4" />
-                Chat History
-              </Button>
-              
-              <Button variant="glass" className="w-full justify-start">
-                <Settings className="w-4 h-4" />
-                Session Settings
-              </Button>
-              
-              <Button variant="crisis" className="w-full justify-start">
-                <Phone className="w-4 h-4" />
-                Crisis Support
-              </Button>
-              
-              <Button 
-                variant="destructive" 
-                className="w-full justify-start"
-                onClick={endSession}
-              >
-                <PhoneOff className="w-4 h-4" />
-                End Session
-              </Button>
-            </div>
-          </div>
+            {/* User Label */}
+            <motion.div
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full glass-strong border border-border/20"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-zeo-primary rounded-full animate-pulse" />
+                <span className="text-sm font-medium">You</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Chat Overlay */}
+      {/* Bottom Controls */}
+      <motion.div
+        className="fixed bottom-0 left-0 right-0 bg-zeo-glass/90 backdrop-blur-lg border-t border-border/20 p-6"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 1 }}
+      >
+        <div className="flex items-center justify-center space-x-6 max-w-2xl mx-auto">
+          <Button
+            variant={isMicOn ? "default" : "destructive"}
+            size="lg"
+            onClick={() => setIsMicOn(!isMicOn)}
+            className="rounded-full w-16 h-16"
+          >
+            {isMicOn ? <Mic className="w-6 h-6" /> : <MicOff className="w-6 h-6" />}
+          </Button>
+          
+          <Button
+            variant={isCameraOn ? "default" : "destructive"}
+            size="lg"
+            onClick={() => setIsCameraOn(!isCameraOn)}
+            className="rounded-full w-16 h-16"
+          >
+            {isCameraOn ? <Video className="w-6 h-6" /> : <VideoOff className="w-6 h-6" />}
+          </Button>
+
+          <Button
+            variant="glass"
+            size="lg"
+            onClick={() => setShowChat(!showChat)}
+            className="rounded-full w-16 h-16"
+          >
+            <MessageSquare className="w-6 h-6" />
+          </Button>
+          
+          <Button 
+            variant="glass" 
+            size="lg"
+            className="rounded-full w-16 h-16"
+          >
+            <Settings className="w-6 h-6" />
+          </Button>
+          
+          <Button 
+            variant="destructive" 
+            size="lg"
+            className="rounded-full w-16 h-16"
+            onClick={endSession}
+          >
+            <PhoneOff className="w-6 h-6" />
+          </Button>
+        </div>
+      </motion.div>
+
+      {/* Right Side Chat Panel */}
       <AnimatePresence>
         {showChat && (
           <motion.div
-            className="fixed inset-x-0 bottom-0 h-96 glass-strong border-t border-border/20 p-6"
-            initial={{ y: 400 }}
-            animate={{ y: 0 }}
-            exit={{ y: 400 }}
+            className="fixed right-0 top-0 bottom-0 w-96 bg-zeo-glass/95 backdrop-blur-lg border-l border-border/20 p-6 flex flex-col"
+            initial={{ x: 384 }}
+            animate={{ x: 0 }}
+            exit={{ x: 384 }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold">Conversation History</h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold">Chat History</h3>
               <Button variant="ghost" size="sm" onClick={() => setShowChat(false)}>
                 ×
               </Button>
             </div>
             
-            <div className="space-y-4 overflow-y-auto h-60">
+            <div className="flex-1 space-y-4 overflow-y-auto mb-4">
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
@@ -309,6 +328,11 @@ export default function Session() {
                   </div>
                 </motion.div>
               ))}
+            </div>
+
+            {/* Auto-transcript indicator */}
+            <div className="text-xs text-muted-foreground text-center p-2 border-t border-border/20">
+              All conversations are automatically transcribed and stored
             </div>
           </motion.div>
         )}
