@@ -17,7 +17,6 @@ const navItems = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Session', href: '/session', icon: Video },
   { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { name: 'Profile', href: '/profile', icon: User },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
@@ -82,13 +81,11 @@ export default function Navigation() {
               <Button variant="ghost" size="sm">
                 Sign In
               </Button>
-              <Button variant="hero" size="sm">
-                Get Started
-              </Button>
-              <Button variant="crisis" size="sm" className="ml-4">
-                <Phone size={16} />
-                Crisis Support
-              </Button>
+              <Link to="/session">
+                <Button variant="hero" size="sm">
+                  Start Session
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -136,13 +133,11 @@ export default function Navigation() {
               <Button variant="ghost" className="w-full justify-start">
                 Sign In
               </Button>
-              <Button variant="hero" className="w-full">
-                Get Started
-              </Button>
-              <Button variant="crisis" className="w-full justify-start">
-                <Phone size={16} />
-                Crisis Support
-              </Button>
+              <Link to="/session" onClick={() => setIsOpen(false)}>
+                <Button variant="hero" className="w-full">
+                  Start Session
+                </Button>
+              </Link>
             </div>
           </div>
         </motion.div>

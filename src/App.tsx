@@ -7,7 +7,6 @@ import Navigation from "./components/Navigation";
 import Landing from "./pages/Landing";
 import Session from "./pages/Session";
 import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -25,7 +24,6 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/session" element={<Session />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
